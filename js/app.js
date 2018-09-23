@@ -141,7 +141,7 @@ var alkiStore = {
   },
 };
 
-//Function to change the DOM
+//Functions to change the TITLE in the DOM
 var changeH1 = function() {
   var h1El = document.getElementById('store-name');
 
@@ -196,7 +196,6 @@ var createSeaTacStore = function() {
   storeContainer.appendChild(ulEl);
 };
 
-
 //Function to create the SEATTLE CENTER STORE in the DOM
 var createSeaCenterStore = function() {
   var storeContainer = document.getElementById('seacenter-store');
@@ -220,8 +219,6 @@ var createSeaCenterStore = function() {
 
   storeContainer.appendChild(ulEl);
 };
-
-createSeaCenterStore();
 
 //Function to create the CAPITOL STORE in the DOM
 var createCapHillStore = function() {
