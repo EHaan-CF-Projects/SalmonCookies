@@ -1,9 +1,7 @@
 'use strict';
 //global
 function getRandomNum(min, max){
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 //Pike Store
@@ -26,7 +24,7 @@ var pikeStore = {
     for(var i = 0; i < hoursArray.length; i++){
       var time = hoursArray[i];
       var totalCookiesAtHour = (this.randomCustomer() * this.avgCookies);
-      var cookiesAtHourReport = totalCookiesAtHour + ' cookies.';
+      var cookiesAtHourReport = Math.round(totalCookiesAtHour) + ' cookies.';
       this.cookiesPerHour.push([time, cookiesAtHourReport]);
       this.dailyCookieSale += totalCookiesAtHour;
     }
@@ -53,7 +51,7 @@ var seaTacStore = {
     for(var i = 0; i < hoursArray.length; i++){
       var time = hoursArray[i];
       var totalCookiesAtHour = (this.randomCustomer() * this.avgCookies);
-      var cookiesAtHourReport = totalCookiesAtHour + ' cookies.';
+      var cookiesAtHourReport = Math.round(totalCookiesAtHour) + ' cookies.';
       this.cookiesPerHour.push([time, cookiesAtHourReport]);
       this.dailyCookieSale += totalCookiesAtHour;
     }
@@ -80,7 +78,7 @@ var seaCenterStore = {
     for(var i = 0; i < hoursArray.length; i++){
       var time = hoursArray[i];
       var totalCookiesAtHour = (this.randomCustomer() * this.avgCookies);
-      var cookiesAtHourReport = totalCookiesAtHour + ' cookies.';
+      var cookiesAtHourReport = Math.round(totalCookiesAtHour) + ' cookies.';
       this.cookiesPerHour.push([time, cookiesAtHourReport]);
       this.dailyCookieSale += totalCookiesAtHour;
     }
@@ -107,7 +105,7 @@ var capHillStore = {
     for(var i = 0; i < hoursArray.length; i++){
       var time = hoursArray[i];
       var totalCookiesAtHour = (this.randomCustomer() * this.avgCookies);
-      var cookiesAtHourReport = totalCookiesAtHour + ' cookies.';
+      var cookiesAtHourReport =Math.round(totalCookiesAtHour) + ' cookies.';
       this.cookiesPerHour.push([time, cookiesAtHourReport]);
       this.dailyCookieSale += totalCookiesAtHour;
     }
@@ -134,7 +132,7 @@ var alkiStore = {
     for(var i = 0; i < hoursArray.length; i++){
       var time = hoursArray[i];
       var totalCookiesAtHour = (this.randomCustomer() * this.avgCookies);
-      var cookiesAtHourReport = totalCookiesAtHour + ' cookies.';
+      var cookiesAtHourReport = Math.round(totalCookiesAtHour) + ' cookies.';
       this.cookiesPerHour.push([time, cookiesAtHourReport]);
       this.dailyCookieSale += totalCookiesAtHour;
     }
