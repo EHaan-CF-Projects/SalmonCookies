@@ -7,33 +7,65 @@ var changeH1 = function() {
   h1El.textContent = "Pat's Salmon Cookies";
 };
 
-changeH1(); //<=====================================================
+changeH1(); //<----------------------------------------------------------------------------
 
-//Generic Store Object
-var SalmonCookieStore = function(storeName, minCustomersPerHour, maxCustomersPerHour, avgCookiesSoldPerCustomer){
-  this.storeName = storeName;
-  this.minCustomers = minCustomersPerHour;
-  this.maxCustomers = maxCustomersPerHour;
-  this.avgCookiesPerSale = avgCookiesSoldPerCustomer;
+var SalmonCookiesStore = function(name, minCustomersPerHour, maxCustomersPerHour, avgCookiesSoldPerCustomer){
+  this.name = name;
+  this.min = minCustomersPerHour;
+  this.max = maxCustomersPerHour;
+  this.avgCookiesSold = avgCookiesSoldPerCustomer;
   this.cookiesSoldEachHour = [];
-  // this.totalDailyCookies = totalCookiesSoldPerDay;
+  this.totalDailyCookiesSale = 0;
+  this.calculateCookiesSoldEachHour();
+  this.calculateDailyCookieSale();
 };
 
-//Generates a random number of customers to calculate average cookies sold in that hour
-SalmonCookieStore.prototype.generateRandomHourlyCustomers = function() {
-  var randomHourlyCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers);
-  return Math.round(randomHourlyCustomers * this.avgCookiesperSale);
+SalmonCookiesStore.prototype.generateCustomersPerHour = function() {
+  var randomAmtCustomers = Math.floor((Math.random() * (this.max - this.min)) + this.min);
+  return Math.round(randomAmtCustomers * this.avgCookiesSold);
 };
 
-//Calculates the number of cookies sold and stores them as an array in cookiesSoldEachHour
-SalmonCookieStore.prototype.calculateCookiesSoldEachHour = function (){
+SalmonCookiesStore.prototype.calculateCookiesSoldEachHour = function() {
   for(var i = 0; i < 15; i++) {
-    this.cookiesSoldEachHour.push(this.generateRandomHourlyCustomers());
+    this.cookiesSoldEachHour.push(this.generateCustomersPerHour());
   }
 };
 
-var pikeStore = new SalmonCookieStore('1st & Pike', 23, 65, 6.3);
-console.log(pikeStore);
+SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
+  for(var i = 0; i < this.cookiesSoldEachHour.length; i++) {
+    this.totalDailyCookiesSale += this.cookiesSoldEachHour[i];
+  }
+};
+
+var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
+
+
+//===================================================================================================
+// //Generic Store Object
+// var SalmonCookieStore = function(storeName, minCustomersPerHour, maxCustomersPerHour, avgCookiesSoldPerCustomer){
+//   this.storeName = storeName;
+//   this.minCustomers = minCustomersPerHour;
+//   this.maxCustomers = maxCustomersPerHour;
+//   this.avgCookiesPerSale = avgCookiesSoldPerCustomer;
+//   this.cookiesSoldEachHour = [];
+//   // this.totalDailyCookies = totalCookiesSoldPerDay;
+// };
+
+// //Generates a random number of customers to calculate average cookies sold in that hour
+// SalmonCookieStore.prototype.generateRandomHourlyCustomers = function() {
+//   var randomHourlyCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers);
+//   return Math.round(randomHourlyCustomers * this.avgCookiesperSale);
+// };
+
+// //Calculates the number of cookies sold and stores them as an array in cookiesSoldEachHour
+// SalmonCookieStore.prototype.calculateCookiesSoldEachHour = function (){
+//   for(var i = 0; i < 15; i++) {
+//     this.cookiesSoldEachHour.push(this.generateRandomHourlyCustomers());
+//   }
+// };
+
+// var pikeStore = new SalmonCookieStore('1st & Pike', 23, 65, 6.3);
+// console.log(pikeStore);
 
 
 // //global
