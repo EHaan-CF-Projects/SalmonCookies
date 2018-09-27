@@ -9,6 +9,7 @@ var changeH1 = function() {
 
 changeH1(); //<----------------------------------------------------------------------------
 
+//Cookie Store Constructor Function
 var SalmonCookiesStore = function(name, minCustomersPerHour, maxCustomersPerHour, avgCookiesSoldPerCustomer){
   this.name = name;
   this.min = minCustomersPerHour;
@@ -20,23 +21,26 @@ var SalmonCookiesStore = function(name, minCustomersPerHour, maxCustomersPerHour
   this.calculateDailyCookieSale();
 };
 
+//Function to generate random customers and calculate cookies sold per hour
 SalmonCookiesStore.prototype.generateCustomersPerHour = function() {
   var randomAmtCustomers = Math.floor((Math.random() * (this.max - this.min)) + this.min);
   return Math.round(randomAmtCustomers * this.avgCookiesSold);
 };
 
+//Function to store hourly cookies in an array
 SalmonCookiesStore.prototype.calculateCookiesSoldEachHour = function() {
   for(var i = 0; i < 15; i++) {
     this.cookiesSoldEachHour.push(this.generateCustomersPerHour());
   }
 };
 
+//Function to calculate total cookies sold daily
 SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
   for(var i = 0; i < this.cookiesSoldEachHour.length; i++) {
     this.totalDailyCookiesSale += this.cookiesSoldEachHour[i];
   }
 };
-
+//Function to generate new unique stores
 var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
 
 
