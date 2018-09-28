@@ -42,12 +42,34 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
   }
 };
 
+//Function to render all stores in the DOM
+SalmonCookiesStore.prototype.renderStoreDetails = function() {
+  if(!this.cookiesSoldEachHour.length){
+    this.calculateCookiesSoldEachHour();
+  }
+
+  var salmonCookiesStoreContainer = document.getElementById('stores');
+  var headerEl = document.createElement('h2');
+  headerEl.textContent = this.name;
+  salmonCookiesStoreContainer.appendChild(headerEl);
+};
+
 //Function to generate new unique stores
 var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
 var seaTacAirport = new SalmonCookiesStore('SeaTac', 3, 24, 1.2);
 var seattleCenter = new SalmonCookiesStore('Seattle Center', 11, 38, 3.7);
 var capitolHill = new SalmonCookiesStore('Capitol Hill', 20, 38, 2.3);
 var alkiBeach = new SalmonCookiesStore('Alki', 2, 16, 4.6);
+
+var renderAllSalmonCookieStores = function(){
+  pikePlace.renderStoreDetails();
+  seaTacAirport.renderStoreDetails();
+  seattleCenter.renderStoreDetails();
+  capitolHill.renderStoreDetails();
+  alkiBeach.renderStoreDetails();
+};
+
+renderAllSalmonCookieStores();
 
 
 
