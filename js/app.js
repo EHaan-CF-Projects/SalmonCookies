@@ -16,6 +16,7 @@ var SalmonCookiesStore = function(name, minCustomersPerHour, maxCustomersPerHour
   this.max = maxCustomersPerHour;
   this.avgCookiesSold = avgCookiesSoldPerCustomer;
   this.cookiesSoldEachHour = [];
+  this.openHoursArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
   this.totalDailyCookiesSale = 0;
   this.calculateCookiesSoldEachHour();
   this.calculateDailyCookieSale();
@@ -40,8 +41,14 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
     this.totalDailyCookiesSale += this.cookiesSoldEachHour[i];
   }
 };
+
 //Function to generate new unique stores
 var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
+var seaTacAirport = new SalmonCookiesStore('SeaTac', 3, 24, 1.2);
+var seattleCenter = new SalmonCookiesStore('Seattle Center', 11, 38, 3.7);
+var capitolHill = new SalmonCookiesStore('Capitol Hill', 20, 38, 2.3);
+var alkiBeach = new SalmonCookiesStore('Alki', 2, 16, 4.6);
+
 
 
 //===================================================================================================
@@ -342,9 +349,6 @@ var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
 // createSeaCenterStore();
 // createCapHillStore();
 // createAlkiStore();
-
-
-
 
 
 // //What if I put all the stores in an array?
