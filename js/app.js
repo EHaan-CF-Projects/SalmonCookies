@@ -35,14 +35,14 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
 };
 
 //Function to render all stores in the DOM
+//Change Header
 var changeH1 = function() {
   var h1El = document.getElementById('store-name');
 
   h1El.textContent = "Pat's Salmon Cookies";
 };
-
+//Create table with headers as hours
 var salesTableEl = document.getElementById('store-data');
-
 var trEl = document.createElement('tr');
 
 for(var i = 0; i < openHoursArray.length; i++) {
@@ -52,6 +52,7 @@ for(var i = 0; i < openHoursArray.length; i++) {
 }
 salesTableEl.appendChild(trEl);
 
+//Add rows of store details
 SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   this.cookiesSoldEachHour;
   this.totalDailyCookiesSale;
