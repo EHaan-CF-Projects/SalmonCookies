@@ -1,14 +1,5 @@
 'use strict';
 
-
-var changeH1 = function() {
-  var h1El = document.getElementById('store-name');
-
-  h1El.textContent = "Pat's Salmon Cookies";
-};
-
-changeH1(); //<----------------------------------------------------------------------------
-
 //Cookie Store Constructor Function
 var openHoursArray = ['', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'Daily Total'];
 
@@ -44,6 +35,12 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
 };
 
 //Function to render all stores in the DOM
+var changeH1 = function() {
+  var h1El = document.getElementById('store-name');
+
+  h1El.textContent = "Pat's Salmon Cookies";
+};
+
 var salesTableEl = document.getElementById('store-data');
 
 var trEl = document.createElement('tr');
@@ -58,7 +55,7 @@ salesTableEl.appendChild(trEl);
 SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   this.cookiesSoldEachHour;
   this.totalDailyCookiesSale;
-  
+
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
 
@@ -85,16 +82,7 @@ var seattleCenter = new SalmonCookiesStore('Seattle Center', 11, 38, 3.7);
 var capitolHill = new SalmonCookiesStore('Capitol Hill', 20, 38, 2.3);
 var alkiBeach = new SalmonCookiesStore('Alki', 2, 16, 4.6);
 
-var renderAllSalmonCookieStores = function(){
-  pikePlace.renderStoreDetails();
-  seaTacAirport.renderStoreDetails();
-  seattleCenter.renderStoreDetails();
-  capitolHill.renderStoreDetails();
-  alkiBeach.renderStoreDetails();
-};
-
-// renderAllSalmonCookieStores();
-
+//Functions calls to Render information in the DOM
 var renderAllStoreData = function(){
   pikePlace.renderSalesDataAsTable();
   seaTacAirport.renderSalesDataAsTable();
@@ -103,4 +91,5 @@ var renderAllStoreData = function(){
   alkiBeach.renderSalesDataAsTable();
 };
 
+changeH1();
 renderAllStoreData();
