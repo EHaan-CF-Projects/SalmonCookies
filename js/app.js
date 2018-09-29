@@ -48,10 +48,13 @@ SalmonCookiesStore.prototype.renderStoreDetails = function() {
     this.calculateCookiesSoldEachHour();
   }
 
-  var salmonCookiesStoreContainer = document.getElementById('stores');
-  var headerEl = document.createElement('h2');
-  headerEl.textContent = this.name;
-  salmonCookiesStoreContainer.appendChild(headerEl);
+  var storeDataTableEl = function() {
+    document.getElementById('store-details');
+  var thEl = document.createEl
+  // var salmonCookiesStoreContainer = document.getElementById('stores');
+  // var headerEl = document.createElement('h2');
+  // headerEl.textContent = this.name;
+  // salmonCookiesStoreContainer.appendChild(headerEl);
 };
 
 //Function to generate new unique stores
