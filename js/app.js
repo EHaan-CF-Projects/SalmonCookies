@@ -10,13 +10,14 @@ var changeH1 = function() {
 changeH1(); //<----------------------------------------------------------------------------
 
 //Cookie Store Constructor Function
+var openHoursArray = ['', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'Daily Total'];
+
 var SalmonCookiesStore = function(name, minCustomersPerHour, maxCustomersPerHour, avgCookiesSoldPerCustomer){
   this.name = name;
   this.min = minCustomersPerHour;
   this.max = maxCustomersPerHour;
   this.avgCookiesSold = avgCookiesSoldPerCustomer;
   this.cookiesSoldEachHour = [];
-  this.openHoursArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
   this.totalDailyCookiesSale = 0;
   this.calculateCookiesSoldEachHour();
   this.calculateDailyCookieSale();
@@ -43,12 +44,21 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
 };
 
 //Function to render all stores in the DOM
+var salesTableEl = document.getElementById('store-data');
+
+var trEl = document.createElement('tr');
+
+for(var i = 0; i < openHoursArray.length; i++) {
+  var thEl = document.createElement('th');
+  thEl.textContent = openHoursArray[i];
+  trEl.appendChild(thEl);
+}
+salesTableEl.appendChild(trEl);
+
 SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
-  this.OpenHoursAray;
   this.cookiesSoldEachHour;
   this.totalDailyCookiesSale;
-
-  var salesTableEl = document.getElementById('store-data');
+  
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
 
@@ -66,7 +76,6 @@ SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   trEl.appendChild(tdEl);
 
   salesTableEl.appendChild(trEl);
-  console.log(salesTableEl);
 };
 
 //Function to generate new unique stores
@@ -86,8 +95,12 @@ var renderAllSalmonCookieStores = function(){
 
 // renderAllSalmonCookieStores();
 
-pikePlace.renderSalesDataAsTable();
-seaTacAirport.renderSalesDataAsTable();
-seattleCenter.renderSalesDataAsTable();
-capitolHill.renderSalesDataAsTable();
-alkiBeach.renderSalesDataAsTable();
+var renderAllStoreData = function(){
+  pikePlace.renderSalesDataAsTable();
+  seaTacAirport.renderSalesDataAsTable();
+  seattleCenter.renderSalesDataAsTable();
+  capitolHill.renderSalesDataAsTable();
+  alkiBeach.renderSalesDataAsTable();
+};
+
+renderAllStoreData();
