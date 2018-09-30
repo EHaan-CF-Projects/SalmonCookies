@@ -34,6 +34,9 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
   }
 };
 
+//Function to calculate total cookies sold hourly for all stores
+
+
 //Function to render all stores in the DOM
 //Change Header
 var changeH1 = function() {
@@ -41,7 +44,8 @@ var changeH1 = function() {
 
   h1El.textContent = "Pat's Salmon Cookies";
 };
-//Create table with headers as hours
+
+//Table with hours as header
 var salesTableEl = document.getElementById('store-data');
 var trEl = document.createElement('tr');
 
@@ -76,6 +80,13 @@ SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   salesTableEl.appendChild(trEl);
 };
 
+//Table footer
+// var salesTableFooterEl = document.createElement('tfoot');
+
+// for(var i = 0; i < openHoursArray.length; i++);
+//   var tdEl = document.createElement('td');
+//   tdEl.textContent = 
+
 //Function to generate new unique stores
 var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
 var seaTacAirport = new SalmonCookiesStore('SeaTac', 3, 24, 1.2);
@@ -92,5 +103,22 @@ var renderAllStoreData = function(){
   alkiBeach.renderSalesDataAsTable();
 };
 
+var storesArray = [pikePlace, seaTacAirport, seattleCenter, seattleCenter, capitolHill, alkiBeach];
+
+var allStoreHourlyTotals = function() {
+  var salesTableEl = document.getElementById('store-data');
+  var salesTableFooterEl = document.createElement('tfoot');
+
+  var thEl = document.createElement('th');
+  thEl.textContent = 'totals';
+  salesTableFooterEl.appendChild(thEl);
+
+
+
+  salesTableEl.appendChild(salesTableFooterEl);
+};
+
 changeH1();
 renderAllStoreData();
+allStoreHourlyTotals();
+
