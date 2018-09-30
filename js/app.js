@@ -113,7 +113,14 @@ var allStoreHourlyTotals = function() {
   thEl.textContent = 'totals';
   salesTableFooterEl.appendChild(thEl);
 
-
+  // for(var i = 0; i < openHoursArray.length; i++){
+  //   var hourlyTotals = 0;
+  //   for(var j = 0; j < storesArray.length; j++){
+  //     hourlyTotals += storesArray[j].cookiesSoldEachHour[i];
+  //   }
+  //   var tdEl = document.createElement('td');
+    
+  // }
 
   salesTableEl.appendChild(salesTableFooterEl);
 };
