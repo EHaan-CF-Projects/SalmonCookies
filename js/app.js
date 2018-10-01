@@ -67,8 +67,8 @@ theadEl.appendChild(thEl);
 salesTableEl.appendChild(theadEl);
 
 //Create table body
-var tbody = document.createElement('tbody');
-salesTableEl.appendChild(tbody);
+var tbodyEl = document.createElement('tbody');
+salesTableEl.appendChild(tbodyEl);
 
 //Add rows of store details
 SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
@@ -91,15 +91,15 @@ SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   tdEl.textContent = this.totalDailyCookiesSale;
   trEl.appendChild(tdEl);
 
-  tbody.appendChild(trEl);
+  tbodyEl.appendChild(trEl);
 };
 
 //Table footer
-var tfoot = document.createElement('tfoot');
-salesTableEl.appendChild(tfoot);
+var tfootEl = document.createElement('tfoot');
+salesTableEl.appendChild(tfootEl);
 
 var trEl = document.createElement('tr');
-tfoot.appendChild(trEl);
+tfootEl.appendChild(trEl);
 
 //Hourly Totals Row Header
 var thEl = document.createElement('th');
@@ -132,7 +132,7 @@ var totals = function() {
   trEl.appendChild(tdEl);
 };
 
-salesTableEl.appendChild(tfoot);
+salesTableEl.appendChild(tfootEl);
 
 //Function to generate new unique stores
 var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
@@ -144,15 +144,42 @@ var alkiBeach = new SalmonCookiesStore('Alki', 2, 16, 4.6);
 //Function calls to Render information in the DOM
 var storesArray = [pikePlace, seaTacAirport, seattleCenter, capitolHill, alkiBeach];
 
-var renderAllStoreData = function(){
-  pikePlace.renderSalesDataAsTable();
-  seaTacAirport.renderSalesDataAsTable();
-  seattleCenter.renderSalesDataAsTable();
-  capitolHill.renderSalesDataAsTable();
-  alkiBeach.renderSalesDataAsTable();
+// var renderAllStoreData = function(){
+//   pikePlace.renderSalesDataAsTable();
+//   seaTacAirport.renderSalesDataAsTable();
+//   seattleCenter.renderSalesDataAsTable();
+//   capitolHill.renderSalesDataAsTable();
+//   alkiBeach.renderSalesDataAsTable();
+// };
+
+var renderAllStoreData = function() {
+  for(var i = 0; i < storesArray.length; i++) {
+    storesArray[i].renderSalesDataAsTable();
+  }
 };
 
 changeH1();
 renderAllStoreData();
 allStoreHourlyTotals();
 totals();
+
+
+//Events
+var storeGeneratorForm = document.getElementById('store-generator-form');
+
+var handleMakeNewStore = function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var storeName = event.target['store-name'].value;
+  var minCustomers = parseInt(event.target['min-customers'].value);
+  var maxCustomers = parseInt(event.target['max-customers'].value);
+  var avgCookies = parseInt(event.target['avg-cookies-per-customer'].value);
+  // console.log(storeName, minCustomers, maxCustomers, avgCookies);
+
+  var newStore = new SalmonCookiesStore(storeName, minCustomers, maxCustomers, avgCookies);
+  storesArray.push(newStore);
+  renderAllStoreData();
+};
+
+storeGeneratorForm.addEventListener('submit', handleMakeNewStore);
+
