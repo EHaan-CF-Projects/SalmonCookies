@@ -41,42 +41,6 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
   }
 };
 
-//DOM Manipulation
-//Change Page Header
-var changeH1 = function() {
-  var h1El = document.getElementById('store-name');
-  h1El.textContent = 'Pat\'s Salmon Cookies';
-};
-
-//Store Data Table
-//Table Header with hourly & daily totals columns
-var salesTableEl = document.getElementById('store-data');
-var theadEl = document.createElement('thead');
-
-//Empty first cell
-var tdEl = document.createElement('td');
-tdEl.textContent = ' ';
-theadEl.appendChild(tdEl);
-
-//Hours
-for(var i = 0; i < openHoursArray.length; i++) {
-  var thEl = document.createElement('th');
-  thEl.textContent = openHoursArray[i];
-  theadEl.appendChild(thEl);
-}
-
-//Daily Totals
-var thEl = document.createElement('th');
-thEl.textContent = 'Daily Totals';
-theadEl.appendChild(thEl);
-
-salesTableEl.appendChild(theadEl);
-
-//Create table body
-var tbodyEl = document.createElement('tbody');
-salesTableEl.appendChild(tbodyEl);
-
-//Add rows of store details
 SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   this.cookiesSoldEachHour;
   this.totalDailyCookiesSale;
@@ -100,46 +64,95 @@ SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
   tbodyEl.appendChild(trEl);
 };
 
+//DOM Manipulation
+//Change Page Header
+
+var changeH1 = function() {
+  var h1El = document.getElementById('store-name');
+  h1El.textContent = 'Pat\'s Salmon Cookies';
+};
+
+//Store Data Table
+var salesTableEl = document.getElementById('store-data');
+
+//Table Header with hourly & daily totals columns
+var createTableHeader = function() {
+  var theadEl = document.createElement('thead');
+
+//Empty first cell
+  var tdEl = document.createElement('td');
+  tdEl.textContent = ' ';
+  theadEl.appendChild(tdEl);
+
+//Hours
+  for(var i = 0; i < openHoursArray.length; i++) {
+    var thEl = document.createElement('th');
+    thEl.textContent = openHoursArray[i];
+    theadEl.appendChild(thEl);
+  }
+
+//Daily Totals
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Daily Totals';
+  theadEl.appendChild(thEl);
+
+  salesTableEl.appendChild(theadEl);
+}
+//Create table body
+var tbodyEl = document.createElement('tbody');
+salesTableEl.appendChild(tbodyEl);
+
+//Add rows of store details
+var renderAllStoreData = function() {
+  for(var i = 0; i < storesArray.length; i++) {
+    storesArray[i].renderSalesDataAsTable();
+  }
+};
+
 //Table footer
 var tfootEl = document.createElement('tfoot');
-// tfootEl.setAttribute('id', 'tableFooter');
 salesTableEl.appendChild(tfootEl);
 
 var trEl = document.createElement('tr');
 tfootEl.appendChild(trEl);
 
 //Hourly Totals Row Header
-var thEl = document.createElement('th');
-thEl.textContent = 'Hourly Totals';
-trEl.appendChild(thEl);
+var createTableFooter = function() {
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Hourly Totals';
+  trEl.appendChild(thEl);
 
 //Totals of each hour column
-TableTotals.prototype.allStoreHourlyTotals = function() {
-  for(var i = 0; i < openHoursArray.length; i++) {
-    var hourlyTotal = 0;
+  TableTotals.prototype.allStoreHourlyTotals = function() {
+    for(var i = 0; i < openHoursArray.length; i++) {
+      var hourlyTotal = 0;
 
-    for(var j = 0; j < storesArray.length; j++) {
-      hourlyTotal += storesArray[j].cookiesSoldEachHour[i];
+      for(var j = 0; j < storesArray.length; j++) {
+        hourlyTotal += storesArray[j].cookiesSoldEachHour[i];
+      }
+
+      var tdEl = document.createElement('td');
+      tdEl.textContent = hourlyTotal;
+      trEl.appendChild(tdEl);
     }
-
-    var tdEl = document.createElement('td');
-    tdEl.textContent = hourlyTotal;
-    trEl.appendChild(tdEl);
-  }
-};
+  };
 
 //All Sales Totals
-TableTotals.prototype.totals = function() {
-  var allTotals = 0;
-  for(var i = 0; i < storesArray.length; i++) {
-    allTotals += storesArray[i].totalDailyCookiesSale;
-  }
-  var tdEl = document.createElement('td');
-  tdEl.textContent = allTotals;
-  trEl.appendChild(tdEl);
+  TableTotals.prototype.totals = function() {
+    var allTotals = 0;
+    for(var i = 0; i < storesArray.length; i++) {
+      allTotals += storesArray[i].totalDailyCookiesSale;
+    }
+    var tdEl = document.createElement('td');
+    tdEl.textContent = allTotals;
+    trEl.appendChild(tdEl);
+
+  };
+  salesTableEl.appendChild(tfootEl);
+  table.allStoreHourlyTotals();
+  table.totals();
 };
 
-salesTableEl.appendChild(tfootEl);
 
 //Functions to generate new unique stores & store totals
 var pikePlace = new SalmonCookiesStore('1st & Pike', 23, 65, 6.3);
@@ -149,19 +162,6 @@ var capitolHill = new SalmonCookiesStore('Capitol Hill', 20, 38, 2.3);
 var alkiBeach = new SalmonCookiesStore('Alki', 2, 16, 4.6);
 
 var table = new TableTotals();
-
-//Function calls to Render information in the DOM
-
-var renderAllStoreData = function() {
-  for(var i = 0; i < storesArray.length; i++) {
-    storesArray[i].renderSalesDataAsTable();
-  }
-};
-
-changeH1();
-renderAllStoreData();
-table.allStoreHourlyTotals();
-table.totals();
 
 //Events
 var storeGeneratorForm = document.getElementById('store-generator-form');
@@ -173,23 +173,26 @@ var handleMakeNewStore = function(event) {
   var minCustomers = parseInt(event.target['min-customers'].value);
   var maxCustomers = parseInt(event.target['max-customers'].value);
   var avgCookies = parseInt(event.target['avg-cookies-per-customer'].value);
-  // console.log(storeName, minCustomers, maxCustomers, avgCookies);
 
   var newStore = new SalmonCookiesStore(storeName, minCustomers, maxCustomers, avgCookies);
   newStore.renderSalesDataAsTable();
-  // table.tableFooter.parentElement.removeChild(tableFooter);
   table.allStoreHourlyTotals();
   table.totals();
 };
 
-// function createTable() {
-//   eraseOldTable()
-//   createTableHeader()
-//   createTableBody()
-//   createTableFooter()
-// }
-
-// createTable(storesArray);
-
 storeGeneratorForm.addEventListener('submit', handleMakeNewStore);
 
+//Function calls to Render information in the DOM
+changeH1();
+renderAllStoreData();
+
+
+
+// function createTable() {
+//   eraseOldTable()
+createTableHeader()
+//   createTableBody()
+createTableFooter();
+// }
+
+// createTable();
