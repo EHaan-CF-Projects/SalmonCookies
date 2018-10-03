@@ -97,8 +97,10 @@ var createTableHeader = function() {
   theadEl.appendChild(thEl);
 
   salesTableEl.appendChild(theadEl);
-}
+};
+
 //Create table body
+// var createTableBody = function() {
 var tbodyEl = document.createElement('tbody');
 salesTableEl.appendChild(tbodyEl);
 
@@ -108,16 +110,21 @@ var renderAllStoreData = function() {
     storesArray[i].renderSalesDataAsTable();
   }
 };
-
+// };
 //Table footer
-var tfootEl = document.createElement('tfoot');
-salesTableEl.appendChild(tfootEl);
-
-var trEl = document.createElement('tr');
-tfootEl.appendChild(trEl);
+var createTableFooter = function() {
+  var tfootEl = document.createElement('tfoot');
+  tfootEl.setAttribute('id', 'tfoot');
+  salesTableEl.appendChild(tfootEl);
+  var clearTable = function() {
+    document.getElementById('tfoot').innerHTML='';
+  };
+  clearTable();
+  var trEl = document.createElement('tr');
+  tfootEl.appendChild(trEl);
 
 //Hourly Totals Row Header
-var createTableFooter = function() {
+
   var thEl = document.createElement('th');
   thEl.textContent = 'Hourly Totals';
   trEl.appendChild(thEl);
@@ -173,11 +180,12 @@ var handleMakeNewStore = function(event) {
   var minCustomers = parseInt(event.target['min-customers'].value);
   var maxCustomers = parseInt(event.target['max-customers'].value);
   var avgCookies = parseInt(event.target['avg-cookies-per-customer'].value);
-
   var newStore = new SalmonCookiesStore(storeName, minCustomers, maxCustomers, avgCookies);
   newStore.renderSalesDataAsTable();
   table.allStoreHourlyTotals();
   table.totals();
+  // clearTable();
+  createTableFooter();
 };
 
 storeGeneratorForm.addEventListener('submit', handleMakeNewStore);
@@ -185,14 +193,15 @@ storeGeneratorForm.addEventListener('submit', handleMakeNewStore);
 //Function calls to Render information in the DOM
 changeH1();
 renderAllStoreData();
-
-
+createTableHeader();
+createTableFooter();
 
 // function createTable() {
 //   eraseOldTable()
-createTableHeader()
 //   createTableBody()
-createTableFooter();
 // }
 
 // createTable();
+
+
+
