@@ -45,7 +45,7 @@ SalmonCookiesStore.prototype.calculateDailyCookieSale = function() {
 //Change Page Header
 var changeH1 = function() {
   var h1El = document.getElementById('store-name');
-  h1El.textContent = 'Pat\'s Salmon Cookies';
+  h1El.textContent = 'Pat\'s Salmon Cookies: Stores & Sales';
 };
 
 //Store Data Table
