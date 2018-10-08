@@ -103,22 +103,20 @@ SalmonCookiesStore.prototype.renderSalesDataAsTable = function() {
 //Table footer
 var createTableFooter = function() {
   var tfootEl = document.createElement('tfoot');
-  tfootEl.setAttribute('id', 'tableFooter');
   salesTableEl.appendChild(tfootEl);
-
 
   var trEl = document.createElement('tr');
   tfootEl.appendChild(trEl);
 
-  //Hourly Totals Row Header
-
-  var thEl = document.createElement('th');
-  thEl.textContent = 'Hourly Totals';
-  trEl.appendChild(thEl);
-
-
   //Totals of each hour column
   TableTotals.prototype.allStoreHourlyTotals = function() {
+    trEl.innerHTML = '';
+
+  //Hourly Totals Row Header
+    var thEl = document.createElement('th');
+    thEl.textContent = 'Hourly Totals';
+    trEl.appendChild(thEl);
+
     for(var i = 0; i < openHoursArray.length; i++) {
       var hourlyTotal = 0;
 
@@ -143,7 +141,7 @@ var createTableFooter = function() {
     trEl.appendChild(tdEl);
   };
 
-salesTableEl.appendChild(tfootEl);
+  salesTableEl.appendChild(tfootEl);
 };
 
 //Functions to generate new unique stores & store totals
@@ -183,12 +181,6 @@ var handleMakeNewStore = function(event) {
   var newStore = new SalmonCookiesStore(storeName, minCustomers, maxCustomers, avgCookies);
   var newTable = new TableTotals();
 
-  // var clearTable = function() {
-  //   document.getElementById('tableFooter') = ' ';
-  // }
-  // clearTable();
-  // salesTableEl.removeChild('tableFooter');
-  
   newStore.renderSalesDataAsTable();
   newTable.allStoreHourlyTotals();
   newTable.totals();
