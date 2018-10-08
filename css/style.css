@@ -134,11 +134,8 @@ footer {
     background-color: rgba(228, 84, 1, 0.767);
     width: 100%;
     height: 245px;
-    align-content: center;
-}
-
-footer img {
-    margin-left: 28%;
+    display: flex;
+    justify-content: center;
 }
 
 /* Stores & Sales Page */
