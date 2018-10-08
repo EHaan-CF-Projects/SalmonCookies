@@ -23,16 +23,16 @@
                 <legend>New Salmon Cookie Store Generator</legend>
 
                 <label for="store-name">Store Name<br />
-                <input name="store-name" type="text"/></label><br />
+                <input name="store-name" type="text" required="required"/></label><br />
 
                 <label for="min-customers">Minimum Customers<br />
-                <input name="min-customers" type="number"/></label><br />
+                <input name="min-customers" type="number" required="required"/></label><br />
 
                 <label for="max-customers">Maximum Customers<br />
-                <input name="max-customers" type="number"/></label><br />
+                <input name="max-customers" type="number" required="required"/></label><br />
 
                 <label for="avg-cookies-per-customer">Average Cookies per Customer<br />
-                <input name="avg-cookies-per-customer" type="number"/></label><br />
+                <input name="avg-cookies-per-customer" type="number" step="0.1" min="0" required="required"/></label><br />
 
                 <button type='submit'>Submit New Store</button>
             </fieldset>
