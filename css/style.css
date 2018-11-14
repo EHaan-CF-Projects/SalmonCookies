@@ -1,4 +1,4 @@
-/* fonts */
+/* Fonts & Static Styles */
 h1 {
     font-size: 50px;
     font-family: 'Fredericka the Great', cursive;
@@ -10,7 +10,7 @@ h2 {
     color: rgb(78, 65, 54);
 }
 h3 {
-    font-size: 25px;
+    font-size: 20px;
     font-family: 'Fredericka the Great', cursive;
     color: rgb(78, 65, 54);
 }
@@ -18,13 +18,15 @@ p {
     font-size: 20px;
     font-family: 'Amatic SC', cursive;
 }
-
-/* Page Alignment */
+img {
+    border-radius: 5px;
+}
+/* Content Alignment - All Pages*/
 body {
     width: 960px;
     margin: auto;
 }
-/* Header */
+/* Header - All Pages */
 header h1 {
     text-align: center;
 }
@@ -51,8 +53,133 @@ nav li a:hover {
     font-size: 40px;
     color: rgb(184, 72, 32);
 }
-/* Body */
+/* Body - Index/Home */
 #index-image img {
     width: 600px;
-    margin: 0px 140px;
+    margin: 30px 140px;
+}
+/* Body - About */
+#about {
+    margin: 0px 130px;
+    width: 700px;
+}
+#about h2 {
+    text-align: center;
+}
+#about figure img {
+    width: 100%;
+}
+#about figcaption {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+}
+#about p {
+    padding: 0px 15px;
+}
+/* Body - Merchandise */
+#merch {
+    width: 700px;
+    margin: 30px 130px;
+}
+#merch figure {
+    width: 30%;
+    margin: 20px 10px;
+    display: inline-block;
+}
+#merch figure img{
+    width: 100%;
+}
+#merch figure figcaption{
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Amatic SC', cursive;
+}
+/* Body - Sales */
+/* Table */
+#store-name {
+    text-align: center;
+}
+#store-data {
+    margin: 0px 130px;
+    border-collapse: collapse;
+}
+#store-data thead, tr {
+    border-bottom: 2px solid  rgb(78, 65, 54);
+}
+#store-data th, td{
+    padding: 5px;
+    font-size: 23px;
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+}
+#store-data th {
+    font-size: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+}
+#store-data tr:hover {
+    background-color: rgb(184, 72, 32);
+    font-weight: bold;
+    color: gold
+}
+/* Form */
+#store-generator-form{
+    margin: 40px 285px;
+    width: 400px;
+    text-align: center;
+}
+#store-generator-form legend, label {
+    font-size: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+}
+#store-generator-form legend {
+    font-size: 35px;
+}
+#store-generator-form button {
+    margin-top: 15px;
+    padding: 0px 20px;
+    background-color: rgb(78, 65, 54);
+}
+#store-generator-form button:hover {
+    background-color: rgb(184, 72, 32);
+}
+#store-generator-form button h3{
+    color: gold;
+    font-weight: 200;
+}
+/* Articles - All Pages except Sales */
+#stories {
+    width: 700px;
+    height: 180px;
+    margin-left: 130px;
+    border-top: 3px solid  rgb(78, 65, 54);
+    border-bottom: 3px solid  rgb(78, 65, 54);
+}
+#stories article{
+    float: left;
+    position: relative;
+    top: 0;
+    width: 30%;
+    margin-right: 30px;
+}
+#stories article:last-child {
+    margin-right: 0px;
+}
+#stories article h3 {
+    text-align: center;
+}
+#stories article p a {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(184, 72, 32);
+}
+#stories article p a:hover {
+    font-style: italic;
+    font-size: 23px;
+}
+footer{
+    margin: 0px 130px;
 }
